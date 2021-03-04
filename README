@@ -1,0 +1,64 @@
+Nume: Ciineanu Stefan-Andrei
+Grupa: 322CD
+Username pe ACS: stefan.ciineanu
+
+Pentru citirea datelor am copiat clasele "Input" si "InputLoader" din
+Tema1 si am adaptat clasele astfel incat sa-mi parseze elementele din
+args[0] (inputul meu). Practic m-am uitat "resources/in" cum arata obiectele
+Consumer, Distributor si Updates si am modificat obiectele din Input si
+InputLoader pt a putea parsa si crea datele, iar in obiectele de tip Input vom 
+avea datele de intrare. Pentru citire am creat 3 clase Consumers, Distributors
+si Update.
+
+Pentru afisare am creat clasele OutConsumer si OutDistributor care respecta for-
+matul din "resources/ref". Apoi am creat un linkedHashMap care imi retine in cheie 
+titlul clasei ex. "consumers", "distributors", iar values reprezinta obiectele 
+OutConsumers si OutDistributor. Aceasta mapare imi va da titlul in fisierul json
+pt consumatori si distribuitori. Ulterior, cu ajutorul ObjectMapperului si a 
+functiei asociate "writerWithDefaultPrettyPrinter" scriu intr-un string consuma-
+torii si distribuitorii in formatul specific de output. In final, cu ajutorul
+"FileWriter" scriu in args[1] acest string.
+
+Simulare:
+
+Intregul algoritm al simularii l-am facut intr-o singura clasa. In aceasta clasa
+imi creez pentru inceput alte 2 obiecte de tip MyConsumer si MyDistributor in care 
+voi prelucra datele. La inceput voi copia elementele din clasele Consumer si 
+Distributor create la citire in aceste obiecte. Urmeaza simularea rundei initiale, 
+Pentru fiecare distribuitor creez pretul contractelor si retin profitul acestora. 
+Dupa care, pentru fiecare consumator selectez contractul optim si calculez pt fiecare
+distribuitor cu cati consumatori a incheiat un contract. Apoi, folosindu-ma de 
+formulele date in enunt voi calcula atat bugetul consumatorilor, cat si cel al 
+distribuitorilor.
+Dupa runda initiala, voi repeta de numberOfTurns ori acest algoritm optimizat:
+Pentru inceput, actualizez din input costurile distribuitorilor, daca e cazul
+In continuare voi genera pretul contractelor in de numarul de utilizatori si 
+capacitatea fiecarui utilizator de a plati (daca e bankrupt nu e luat in seama, 
+dar daca e doar inDebt va trebui sa tin cont de anumite conditii).
+Actualizel pt fiecare consumator pretul contractelor.
+Dupa care, daca e cazul, adaug un nou consumator din input la simulare.
+Pentru noii consumatori si pentru cei pentru care a expirat contractul voi cauta
+si selecta un contract avantajos, altfel daca nu sunt in aceste situatii 
+decrementez numarul de luni ale contractului.
+Urmeaza sa calculez numarul de consumatori pt fiecare distribuitor.
+Acum urmeaza o parte deosenit de importanta, si anume actualizarea bugetului
+consumatorilor: 
+pentru fiecare consumator, daca nu e Bankrupt ii calculez cheltuielile, iar daca
+bugetul lui nu poate sustine aceste cheluieli marchez consumatorul ca are datorii.
+Daca acesta mai are datorie din runda precedenta si nici acum nu poate plati, atunci 
+il scot din joc marcandu-l drept "Bankrupt" si elimin contractul sau de la distribuitor
+si schimb pretul contractelor in functie de consumatorii ramasi.
+Verific cazul in care isi poate plati datoria, iar daca acesta are datorie retin faptul
+ca nu ii poate plati distribuitorului.
+Dupa calculul bugetului consumatorilor urmeaza actualizarea bugetului distribuitorilor 
+astfel: daca distribuitorul nu e Bankrupt, aflu cheltuielile lunare si bugetul final
+in functie de consumatori.
+Dupa care voi crea obiectele OutConsumers si OutDistributers pt afisare tinand cont de 
+faptul ca vom pastra contractele sortate dupa numarul de luni ramase.
+
+Observatii: 
+Citirea si afisarea mi-a luat cel mai mult timp in aceasta tema.
+
+ 
+
+ 
